@@ -1,0 +1,24 @@
+{
+    "nome": "Vitoria Rock",
+    "genero": "Show de Rock",
+    "descricao": "O evento de Rock ocorrerá na praça do Vitoria Regia",
+    "localizacao": "Vitoria Regia, Bauru-SP",
+    "image": "Ação"
+}
+
+
+{
+    "nome": "Samba 90s",
+    "genero": "Show de Samba",
+    "descricao": "O evento de Samba vai acontecer dia 25/03/2025 na casa de Samba",
+    "localizacao": "Eduardo Silva, São Paulo-SP",
+    "image": "https://akamai.sscdn.co/gcs/cifra-blog/pt/wp-content/uploads/2024/02/e541b87-roda-de-samba.jpeg"
+}
+
+{
+    "nome": "Apresentação artistica",
+    "genero": "Cultural",
+    "descricao": "O evento vai acontecer dia 30/03/2025 no treatro municipal de Lencois Paulista",
+    "localizacao": "Dom Pedro II, Lencois Paulista-SP",
+    "image": "https://portal.uniasselvi.com.br/storage/app/noticia/1711/capa/1280x962-20230327162626-27%20de%20mar%C3%A7o%20dia%20mundial%20do%20teatro.png"
+}
