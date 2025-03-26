@@ -19,13 +19,13 @@ export class EventoArmazanado {
     const evento = this.buscarID(id);
 
     Object.entries(dadosAtualizacao).forEach(
-        ([chave,valor]) => {
-            if(chave === 'id'){
-                return
-            }
-            if (valor === undefined){
-                return
-            }
+      ([chave,valor]) => {
+          if (valor === undefined){
+              return
+          }
+          if(chave === 'id'){
+              return
+          }
 
             evento[chave] = valor;
         }

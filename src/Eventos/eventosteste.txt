@@ -3,7 +3,7 @@
     "genero": "Show de Rock",
     "descricao": "O evento de Rock ocorrerá na praça do Vitoria Regia",
     "localizacao": "Vitoria Regia, Bauru-SP",
-    "image": "Ação"
+    "image": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg"
 }
 
 
