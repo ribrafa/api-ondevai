@@ -12,7 +12,7 @@ export class alterarEventoDTO{
     })
     nome:string
 
-    @IsInt()
+    @IsString()
     @ApiProperty({
         example: 'Musica/Show',
         description: 'Esse campo vai ser utilizado como identificação do genero do Evento a ser criado'
@@ -26,7 +26,7 @@ export class alterarEventoDTO{
     })
     descricao: string;
 
-    @IsEmail()
+    @IsString()
     @ApiProperty({
         example: 'Rua 10, Cidade 20 - SP',
         description: 'Esse campo vai ser utilizado como identificação da localização do Evento a ser criado'
