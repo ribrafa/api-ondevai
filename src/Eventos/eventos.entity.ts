@@ -14,4 +14,9 @@ export class EventoEntity {
         this.localizacao = localizacao;
         this.image = image;
     }
+
+    
   }
+
+
+  

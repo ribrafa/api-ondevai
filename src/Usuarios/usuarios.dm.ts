@@ -51,7 +51,7 @@ export class UsuarioArmazenados{
                 return
 
             }else if (chave === 'senha'){
-                usuario.trocarSenha(valor);
+                usuario.TrocarSenha(valor);
                 return
             }
             if(valor === undefined){

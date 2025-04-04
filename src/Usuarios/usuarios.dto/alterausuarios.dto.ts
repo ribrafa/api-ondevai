@@ -1,6 +1,7 @@
 import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
 import { EmailUnico } from "../validacao/email-unico-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { SenhaForte } from "../validacao/senha-forte-validator";
 
 export class alteraUsuarioDTO{
     @IsString()
@@ -45,6 +46,7 @@ export class alteraUsuarioDTO{
     telefone: string;
 
     @MinLength(6,{message:"Senha precisa de pelo menos 6 digitos"})
+    @SenhaForte({message:"Senha muito fraca. Tente Novamente"})
     @IsOptional()
     @ApiProperty({
         example:'Kjszkjk01@',
