@@ -5,6 +5,10 @@ import { UsuarioEntity } from "../Usuarios/usuarios.entity";
 @Injectable()
 export class UsuarioArmazenados{
     #usuarios: UsuarioEntity[]=[];
+
+    todosUsuarios() {
+        return this.#usuarios;
+      }
     
     AdicionarUsuario(usuario: UsuarioEntity){
         this.#usuarios.push(usuario);

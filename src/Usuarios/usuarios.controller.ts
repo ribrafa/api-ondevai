@@ -1,22 +1,21 @@
 import { Body, Controller, Get, Param, Post, Put, Delete } from "@nestjs/common";
-import { UsuariosArmazenados } from "./usuario.dm";
-import { UsuarioEntity } from "./usuario.entity";
-import { criaUsuarioDTO } from "./dto/usuario.dto";
+import { UsuarioArmazenados } from "./usuarios.dm";
+import { UsuarioEntity } from "./usuarios.entity";
+import { CriaUsuarioDTO } from "./usuarios.dto/usuarios.dto";
 import { v4 as uuid } from "uuid";
-import { ListaUsuariosDTO } from "./dto/consulta.dto";
-import { alteraUsuarioDTO } from "./dto/alteraUsuario.dto";
-import { LoginUsuarioDTO } from "./dto/loginUsuario.dto";
+import { alteraUsuarioDTO } from "./usuarios.dto/alterausuarios.dto";
+import { LoginUsuarioDTO } from "./usuarios.dto/loginusuario.dto";
 import { ApiTags } from "@nestjs/swagger";
 
 
 @ApiTags('usuario')
 @Controller('/usuarios')
 export class UsuarioController{
-constructor(private clsUsuariosArmazenados: UsuariosArmazenados, private HttpService:HttpService){
+constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
 
 }
     @Post()
-    async criaUsuario(@Body() dadosUsuario: criaUsuarioDTO){
+    async criaUsuario(@Body() dadosUsuario: CriaUsuarioDTO){
 
         var novoUsuario = new UsuarioEntity(uuid(), dadosUsuario.nome, 
         dadosUsuario.datanasc,
@@ -31,21 +30,6 @@ constructor(private clsUsuariosArmazenados: UsuariosArmazenados, private HttpSer
             status: "Usuario Criado"
         }
         return usuario;
-    }
-
-    @Get()
-    async listaUsuarios(){
-        
-        const usuariosListados = this.clsUsuariosArmazenados.Usuarios;
-        const listaRetorno = usuariosListados.map(
-            usuario => new ListaUsuariosDTO(
-                usuario.id,
-                usuario.nome,
-                usuario.email
-            )
-        );
-        
-        return listaRetorno;
     }
 
     @Put ('/:id')
@@ -67,6 +51,11 @@ constructor(private clsUsuariosArmazenados: UsuariosArmazenados, private HttpSer
             usuario: usuarioRemovido,
             message: 'Usuário removido'
         }
+    }
+
+    @Get()
+    todosUsuarios(){
+        return this.clsUsuariosArmazenados.todosUsuarios();
     }
 
     @Post("/login")
