@@ -4,13 +4,17 @@ import { EventoEntity } from "./eventos.entity";
 import { v4 as uuid } from "uuid";
 import { criarEventoDTO } from "./eventos.dto/eventos.dto";
 import { alterarEventoDTO } from "./eventos.dto/alteraeventos.dto";
+import { ApiBadRequestResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 
+@ApiTags('evento')
 @Controller('eventos')
 export class EventosController {
     constructor(private clsEventosArmazanados: EventoArmazanado){}
 
     @Post()
+    @ApiResponse({status: 201, description: "Retorna que houve sucesso"})
+    @ApiBadRequestResponse({description: "Retorna que faltou alguma informação"})
     async adicionarEvento(@Body() dadosEvento: criarEventoDTO){
  
         var novoEvento = new EventoEntity(uuid(), dadosEvento.nome, dadosEvento.genero,
