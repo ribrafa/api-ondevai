@@ -39,7 +39,7 @@ export class CriaUsuarioDTO{
     })
     telefone: string;
 
-    @MinLength(6,{message:"Senha precisa de pelo menos 6 digitos"})
+    @MinLength(8,{message:"Senha precisa de pelo menos / digitos"})
     @ApiProperty({
         example:'1234578910',
         description:'a senha deve conter letras Maiuscolas, minuscolas, numeros e caracteres'
