@@ -2,11 +2,11 @@ import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "cla
 import { EmailUnico } from "../validacao/email-unico-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
-export class UsuarioDTO{
+export class CriaUsuarioDTO{
     @IsString()
     @IsNotEmpty({message: "Nome não pode ser vazio"})
     @ApiProperty({
-        example: 'Djalma Mansueto',
+        example: 'Lucas Tico',
         description: 'Esse campo vai ser utilizado como identificação do usuario'
     })
     nome:string;
@@ -27,21 +27,21 @@ export class UsuarioDTO{
     @IsEmail(undefined,{message:"email é invalido"})
     @EmailUnico({message:"email já cadastrado. Tente novamente"})
     @ApiProperty({
-        example: 'djalma.mansueto@gmail.com',
+        example: 'exple@email.com',
         description: 'deve conter apenas email do usuario'
     })
     email: string;
 
     @IsString()
     @ApiProperty({
-        example: '14-991100370',
+        example: '(99)-9999999',
         description: 'deve constar numero de telefone do usuario '
     })
     telefone: string;
 
     @MinLength(6,{message:"Senha precisa de pelo menos 6 digitos"})
     @ApiProperty({
-        example:'Kjszkjk01@',
+        example:'1234578910',
         description:'a senha deve conter letras Maiuscolas, minuscolas, numeros e caracteres'
     })
     senha: string;
