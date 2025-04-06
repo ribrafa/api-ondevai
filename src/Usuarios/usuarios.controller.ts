@@ -17,7 +17,8 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
     @Post()
     async criaUsuario(@Body() dadosUsuario: CriaUsuarioDTO){
 
-        var novoUsuario = new UsuarioEntity(uuid(), dadosUsuario.nome, 
+        var novoUsuario = new UsuarioEntity(uuid(), 
+        dadosUsuario.nome, 
         dadosUsuario.datanasc,
         dadosUsuario.sexo,
         dadosUsuario.email, 

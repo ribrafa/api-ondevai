@@ -7,6 +7,7 @@ import { StrongPassValidator } from "./validacao/senha-forte-validator";
     imports:[],
     controllers:[UsuarioController],
     providers:[UsuarioArmazenados, StrongPassValidator]
+    //Add as informaçõesem providers para o teste no Postman
 })
 
 export class UsuarioModule{}
