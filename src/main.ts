@@ -20,12 +20,12 @@ async function bootstrap() {
 
 
   const config = new DocumentBuilder()
-  .setTitle('API Eventos - OndeVaiEventosAPI')
+  .setTitle('API OndeVai')
   .setDescription(
-    'A presente API tem como objetivo registrar Eventos no site OndeVai',
+    'A presente API tem como objetivo registrar cadastro de Usuarios e Eventos no site OndeVai',
   )
   .setVersion('1.0')
-  .addTag('evento')
+  .addTag('evento', 'usuario')
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
