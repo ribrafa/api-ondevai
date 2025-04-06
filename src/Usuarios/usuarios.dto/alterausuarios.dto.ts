@@ -13,14 +13,14 @@ export class alteraUsuarioDTO{
     })
     nome:string;
 
-    @IsInt()
+    @IsString()
     @IsOptional()
     @ApiProperty({
         example: "01/01/2000",
         description:'Esse campo vai ser utilizado para definir data de nascimento'
     })
     datanasc: string;
-    @IsInt()
+    @IsString()
     @IsOptional()
     @ApiProperty({
         example: "Masculino,Feminino e Outros",

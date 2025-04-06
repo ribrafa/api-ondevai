@@ -13,13 +13,14 @@ export class CriaUsuarioDTO{
     })
     nome:string;
 
-    @IsInt()
+    @IsString()
     @ApiProperty({
         example: "01/01/2000",
         description:'Esse campo vai ser utilizado para definir data de nascimento'
     })
     datanasc: string;
-    @IsInt()
+
+    @IsString()
     @ApiProperty({
         example: "Masculino,Feminino e Outros",
         description:'Esse campo vai ser utilizado para definir o sexo do Usuario'
@@ -49,6 +50,5 @@ export class CriaUsuarioDTO{
     })
     senha: string;
     
-
 }
 
