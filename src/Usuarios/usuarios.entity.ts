@@ -20,7 +20,7 @@ export class UsuarioEntity{
         this.sexo = sexo;
         this.email = email;
         this.telefone = telefone;
-        this.senha = senha;
+        this.senha = bcrypt.hashSync(senha,saltOrRounds);
     }
 
     TrocarSenha(senhaNova){

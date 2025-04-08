@@ -5,7 +5,7 @@ import { CriaUsuarioDTO } from "./usuarios.dto/usuarios.dto";
 import { v4 as uuid } from "uuid";
 import { alteraUsuarioDTO } from "./usuarios.dto/alterausuarios.dto";
 import { LoginUsuarioDTO } from "./usuarios.dto/loginusuario.dto";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiTags ,ApiResponse } from "@nestjs/swagger";
 
 
 @ApiTags('usuario')
@@ -15,6 +15,7 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
 
 }
     @Post()
+    @ApiResponse({status: 201, description: "Retorna que houve sucesso"})
     async criaUsuario(@Body() dadosUsuario: CriaUsuarioDTO){
 
         var novoUsuario = new UsuarioEntity(uuid(), 
