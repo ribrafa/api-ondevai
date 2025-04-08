@@ -14,7 +14,6 @@ export class EventosController {
 
     @Post()
     @ApiResponse({status: 201, description: "Retorna que houve sucesso"})
-    @ApiBadRequestResponse({description: "Retorna que faltou alguma informação"})
     async adicionarEvento(@Body() dadosEvento: criarEventoDTO){
  
         var novoEvento = new EventoEntity(uuid(), dadosEvento.nome, dadosEvento.genero,
@@ -38,19 +37,6 @@ export class EventosController {
     return this.clsEventosArmazanados.eventoPorID(id);
     }
 
-    // @Get(':id/compartilhar')
-    // EventoDetalhado(@Param('id') id: string) {
-    // const evento = this.clsEventosArmazanados.eventoPorID(id);
-    // if (!evento) {
-    // throw new Error('Evento não encontrado');
-    // }
-
-    // return {
-    //     message: `Você está assistindo ao filme ${evento.nome} com a sinopse ${evento.genero}. Esse filme é do ano de ${evento.descricao} e tem o genero ${evento.localizacao}`
-    //     }
-    // }
-
-
     @Put(':id')
     atualizaEvento(@Param('id') id: string, @Body() dadosAtualizados: alterarEventoDTO) {
         const EventoAtualizado = this.clsEventosArmazanados.atualizaEvento(id, dadosAtualizados)
@@ -72,4 +58,21 @@ export class EventosController {
         }
         
     }
+
+
+
+
+
+
+     // @Get(':id/compartilhar')
+    // EventoDetalhado(@Param('id') id: string) {
+    // const evento = this.clsEventosArmazanados.eventoPorID(id);
+    // if (!evento) {
+    // throw new Error('Evento não encontrado');
+    // }
+
+    // return {
+    //     message: `Você está assistindo ao filme ${evento.nome} com a sinopse ${evento.genero}. Esse filme é do ano de ${evento.descricao} e tem o genero ${evento.localizacao}`
+    //     }
+    // }
 }

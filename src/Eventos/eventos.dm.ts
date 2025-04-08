@@ -43,6 +43,7 @@ private buscarID(id: string){
     }
     return possivelEvento
 }
+
   excluirEvento(id: string) {
     const evento = this.buscarID(id);
 
