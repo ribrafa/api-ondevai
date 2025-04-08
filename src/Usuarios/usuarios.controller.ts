@@ -60,6 +60,12 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
         return this.clsUsuariosArmazenados.todosUsuarios();
     }
 
+    @Get('/:id')
+    async buscarUsuarioPorId(@Param('id') id: string) {
+    const usuario = this.clsUsuariosArmazenados.buscaPorID(id);
+    return usuario;
+    }
+
     @Post("/login")
     async login(@Body() dadoslogin: LoginUsuarioDTO){
         var login  = this.clsUsuariosArmazenados.validarLogin(dadoslogin.email, dadoslogin.senha);

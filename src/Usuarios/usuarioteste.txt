@@ -1,0 +1,35 @@
+{
+    "nome": "Rafael",
+    "datanasc": "27/10/1994",
+    "sexo": "masculino",
+    "email": "rafael@email.com",      
+   "telefone": "14123456115", 
+    "senha": "Rr@12345678987"
+}
+
+{
+    "nome": "Djalma",
+    "datanasc": "30/10/2001",
+    "sexo": "masculino",
+    "email": "djalma@email.com",      
+   "telefone": "14123456115", 
+    "senha": "Dj@12345678987"
+}
+
+{
+    "nome": "Marcio",
+    "datanasc": "30/10/1990",
+    "sexo": "masculino",
+    "email": "marcio@email.com",      
+   "telefone": "14123456115", 
+    "senha": "Mc@12345678987"
+}
+
+{
+    "nome": "Lucas",
+    "datanasc": "30/10/1994",
+    "sexo": "masculino",
+    "email": "lucas@email.com",      
+   "telefone": "14123456115", 
+    "senha": "Lc@12345678987"
+}

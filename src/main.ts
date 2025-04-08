@@ -25,7 +25,7 @@ async function bootstrap() {
     'A presente API tem como objetivo registrar cadastro de Usuarios e Eventos no site OndeVai',
   )
   .setVersion('1.0')
-  .addTag('evento', 'usuario')
+  .addTag('evento')
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
