@@ -21,6 +21,20 @@ export class criarEventoDTO{
 
     @IsString()
     @ApiProperty({
+        example: '10/10/2010',
+        description: 'Esse campo vai ser utilizado para descrever a data do Evento a ser criado'
+    })
+    data: string;
+
+    @IsString()
+    @ApiProperty({
+        example: '18:00',
+        description: 'Esse campo vai ser utilizado para descrever o horario do Evento a ser criado'
+    })
+    horario: string;
+
+    @IsString()
+    @ApiProperty({
         example: 'O evento Samba 90s está em sua 6ª edição e vai ocorrer no dia...',
         description: 'Esse campo vai ser utilizado para descrever o Evento a ser criado'
     })
