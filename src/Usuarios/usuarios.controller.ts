@@ -28,7 +28,7 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
         this.clsUsuariosArmazenados.AdicionarUsuario(novoUsuario);
 
         var usuario = {
-            dadosUsuario : dadosUsuario,
+            dadosUsuario : novoUsuario,
             status: "Usuario Criado"
         }
         return usuario;
