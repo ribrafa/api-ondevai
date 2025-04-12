@@ -7,6 +7,12 @@
     "senha": "Rr@12345678987"
 }
 
+
+{
+    "email": "rafael@email.com",      
+    "senha": "Rr@12345678987"
+}
+
 {
     "nome": "Djalma",
     "datanasc": "30/10/2001",
