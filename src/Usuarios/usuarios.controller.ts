@@ -22,8 +22,8 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
         dadosUsuario.nome, 
         dadosUsuario.datanasc,
         dadosUsuario.sexo,
+        dadosUsuario.telefone,
         dadosUsuario.email, 
-        dadosUsuario.telefone, 
         dadosUsuario.senha);
         this.clsUsuariosArmazenados.AdicionarUsuario(novoUsuario);
 
@@ -68,7 +68,7 @@ constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
 
     @Post("/login")
     async login(@Body() dadoslogin: LoginUsuarioDTO){
-        var login  = this.clsUsuariosArmazenados.validarLogin(dadoslogin.email, dadoslogin.senha);
+        var login = await this.clsUsuariosArmazenados.validarLogin(dadoslogin.email, dadoslogin.senha);
  
         return{
             status: login.login,

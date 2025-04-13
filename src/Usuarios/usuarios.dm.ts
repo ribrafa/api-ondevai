@@ -75,18 +75,25 @@ export class UsuarioArmazenados{
         usuarioSalvo => usuarioSalvo.email === email
         )
 
-    if (!possivelUsuario){
-        throw new Error ('Usuario nao Encontrado')
-    }
+        if (!possivelUsuario) {
+            throw new Error(`Usuário com e-mail '${email}' não encontrado`);
+        }
     return possivelUsuario;
 
     }
-    validarLogin(email:string, senha:string){
-        const usuario = this.buscarPorEmail(email);
-        return {
-        login: usuario.login(senha),
-        usuario:usuario
+
+    async validarLogin(email: string, senha: string) {
+        const usuario = await this.buscarPorEmail(email);
+      
+        if (!usuario) {
+          throw new Error("Usuario nao Encontrado");
         }
-    }
+      
+        const senhaCorreta = await usuario.login(senha);
+        return {
+          login: senhaCorreta,
+          usuario: senhaCorreta ? usuario : undefined
+        };
+      }
 
 }

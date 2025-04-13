@@ -19,12 +19,21 @@ export class CriaUsuarioDTO{
         description:'Esse campo vai ser utilizado para definir data de nascimento'
     })
     datanasc: string;
+    
     @IsString()
     @ApiProperty({
         example: "Masculino,Feminino e Outros",
         description:'Esse campo vai ser utilizado para definir o sexo do Usuario'
     })
-    sexo:string;
+    sexo:string; 
+
+    @IsString()
+    @ApiProperty({
+        example: '(99)-9999999',
+        description: 'deve constar numero de telefone do usuario '
+    })
+    telefone: string;
+
 
     @IsEmail(undefined,{message:"email é invalido"})
     @EmailUnico({message:"email já cadastrado. Tente novamente"})
@@ -34,12 +43,6 @@ export class CriaUsuarioDTO{
     })
     email: string;
 
-    @IsString()
-    @ApiProperty({
-        example: '(99)-9999999',
-        description: 'deve constar numero de telefone do usuario '
-    })
-    telefone: string;
 
     @MinLength(8,{message:"Senha precisa de pelo menos 8 digitos"})
     @SenhaForte({message:"Senha muito fraca. Tente Novamente"})
