@@ -17,7 +17,7 @@ export class EventosController {
     async adicionarEvento(@Body() dadosEvento: criarEventoDTO){
  
         var novoEvento = new EventoEntity(uuid(), dadosEvento.nome, dadosEvento.genero, dadosEvento.data, dadosEvento.horario,
-            dadosEvento.descricao, dadosEvento.localizacao, dadosEvento.image);
+            dadosEvento.descricao, dadosEvento.endereco, dadosEvento.numero, dadosEvento.cep, dadosEvento.cidade, dadosEvento.image);
         this.clsEventosArmazanados.adicionarEvento(novoEvento);
  
         var eventos = {

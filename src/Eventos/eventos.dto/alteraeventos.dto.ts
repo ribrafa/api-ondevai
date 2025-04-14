@@ -33,10 +33,34 @@ export class alterarEventoDTO{
     @IsString()
     @IsOptional()
     @ApiProperty({
-        example: 'Rua 10, Cidade 20 - SP',
-        description: 'Esse campo vai ser utilizado como identificação da localização do Evento a ser criado'
+        example: 'Rua 10',
+        description: 'Esse campo vai ser utilizado como identificação do endereço do Evento a ser criado'
     })
-    localizacao: string;
+    endereco: string;
+
+    @IsString()
+    @IsOptional()
+    @ApiProperty({
+        example: 'Numero 8-53',
+        description: 'Esse campo vai ser utilizado como identificação do numero do endereço do Evento a ser criado'
+    })
+    numero: string;
+
+    @IsString()
+    @IsOptional()
+    @ApiProperty({
+        example: '17017000',
+        description: 'Esse campo vai ser utilizado como identificação do CEP do Evento a ser criado'
+    })
+    cep: string;
+
+    @IsString()
+    @IsOptional()
+    @ApiProperty({
+        example: 'São Paulo',
+        description: 'Esse campo vai ser utilizado como identificação da cidade do Evento a ser criado'
+    })
+    cidade: string;
 
     @IsString()
     @IsOptional()
