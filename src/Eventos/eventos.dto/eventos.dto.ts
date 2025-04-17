@@ -35,6 +35,13 @@ export class criarEventoDTO{
 
     @IsString()
     @ApiProperty({
+        example: '+18 ou Livre',
+        description: 'Esse campo vai ser utilizado para informar a classficação do evento'
+    })
+    classificacao: string;
+
+    @IsString()
+    @ApiProperty({
         example: 'O evento Samba 90s está em sua 6ª edição e vai ocorrer no dia...',
         description: 'Esse campo vai ser utilizado para descrever o Evento a ser criado'
     })

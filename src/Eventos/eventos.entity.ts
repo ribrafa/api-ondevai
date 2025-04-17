@@ -2,8 +2,9 @@ export class EventoEntity {
     id: string;
     nome: string;
     genero: string;
-    data: string
-    horario: string
+    data: string;
+    horario: string;
+    classificacao: string;
     descricao: string;
     endereco: string;
     numero: string;
@@ -11,12 +12,13 @@ export class EventoEntity {
     cidade: string;
     image: string
     
-    constructor(id: string, nome: string, genero: string, data: string, horario: string,  descricao: string, endereco: string, numero: string, cep: string, cidade: string, image: string){
+    constructor(id: string, nome: string, genero: string, data: string, horario: string, classificacao: string, descricao: string, endereco: string, numero: string, cep: string, cidade: string, image: string){
         this.id = id;
         this.nome = nome;
         this.genero = genero;
         this.data = data;
         this.horario = horario;
+        this.classificacao = classificacao;
         this.descricao = descricao;
         this.endereco = endereco;
         this.numero = numero;

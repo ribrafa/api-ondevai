@@ -16,7 +16,7 @@ export class EventosController {
     @ApiResponse({status: 201, description: "Retorna que houve sucesso"})
     async adicionarEvento(@Body() dadosEvento: criarEventoDTO){
  
-        var novoEvento = new EventoEntity(uuid(), dadosEvento.nome, dadosEvento.genero, dadosEvento.data, dadosEvento.horario,
+        var novoEvento = new EventoEntity(uuid(), dadosEvento.nome, dadosEvento.genero, dadosEvento.data, dadosEvento.horario, dadosEvento.classificacao,
             dadosEvento.descricao, dadosEvento.endereco, dadosEvento.numero, dadosEvento.cep, dadosEvento.cidade, dadosEvento.image);
         this.clsEventosArmazanados.adicionarEvento(novoEvento);
  
