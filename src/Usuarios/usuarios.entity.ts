@@ -6,20 +6,20 @@ export class UsuarioEntity{
     nome: string;
     datanasc: string;
     sexo: string;
+    telefone: string;
     email: string;      
-    telefone: string; 
     senha: string;
 
 
-    constructor(id: string, nome: string, datanasc: string, sexo: string, email: string, telefone: string, senha: string ){
+    constructor(id: string, nome: string, datanasc: string, sexo: string, telefone: string, email: string, senha: string ){
         const saltOrRounds = 10;
 
         this.id = id;
         this.nome = nome;
         this.datanasc = datanasc;
         this.sexo = sexo;
-        this.email = email;
         this.telefone = telefone;
+        this.email = email;
         this.senha = bcrypt.hashSync(senha,saltOrRounds);
     }
 
