@@ -1,8 +1,14 @@
 {
     "nome": "Vitoria Rock",
     "genero": "Show de Rock",
+    "data":"2510191",
+    "horario":"20:30",
+    "classificacao":"+18",
     "descricao": "O evento de Rock ocorrerá na praça do Vitoria Regia",
-    "localizacao": "Vitoria Regia, Bauru-SP",
+    "endereco":"Rua 10 535",
+    "numero":"551",
+    "cep":"1715151158",
+    "cidade":"Bauru",
     "image": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg"
 }
 
