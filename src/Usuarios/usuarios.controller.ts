@@ -1,79 +1,87 @@
-import { Body, Controller, Get, Param, Post, Put, Delete } from "@nestjs/common";
-import { UsuarioArmazenados } from "./usuarios.dm";
-import { UsuarioEntity } from "./usuarios.entity";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CriaUsuarioDTO } from "./usuarios.dto/usuarios.dto";
-import { v4 as uuid } from "uuid";
-import { alteraUsuarioDTO } from "./usuarios.dto/alterausuarios.dto";
-import { LoginUsuarioDTO } from "./usuarios.dto/loginusuario.dto";
-import { ApiTags ,ApiResponse } from "@nestjs/swagger";
-
+import { RetornoUsuarioDTO } from "./usuarios.dto/retornoUsuario.dto";
+import { ListagemUsuariosDTO, ListaUsuarioDTO } from "./usuarios.dto/listaUsuario.dto";
+import { loginUsuarioDTO } from "./usuarios.dto/loginUsuario.dto";
+import { alteraUsuarioDTO } from "./usuarios.dto/alteraUsuarios.dto";
+import { ApiCreatedResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { USUARIOService } from "./usuario.service";
+import { RetornoCadastroDTO } from "src/dto/retorno.dto";
 
 @ApiTags('usuario')
 @Controller('/usuarios')
 export class UsuarioController{
-constructor(private clsUsuariosArmazenados: UsuarioArmazenados){
-
-}
+    
+    constructor(private readonly usuarioService: USUARIOService){}
     @Post()
-    @ApiResponse({status: 201, description: "Retorna que houve sucesso"})
-    async criaUsuario(@Body() dadosUsuario: CriaUsuarioDTO){
-
-        var novoUsuario = new UsuarioEntity(uuid(), 
-        dadosUsuario.nome, 
-        dadosUsuario.datanasc,
-        dadosUsuario.sexo,
-        dadosUsuario.telefone,
-        dadosUsuario.email, 
-        dadosUsuario.senha);
-        this.clsUsuariosArmazenados.AdicionarUsuario(novoUsuario);
-
-        var usuario = {
-            dadosUsuario : novoUsuario,
-            status: "Usuario Criado"
-        }
-        return usuario;
+    @ApiCreatedResponse({ description:'Retorna que houve sucesso na inclusão'})
+    @ApiResponse({status: 500, description:'Retorna que houve erro na inclusão.'})
+    @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
+    async criaUsuario(@Body() dadosUsuario: CriaUsuarioDTO): Promise <RetornoCadastroDTO>{       
+        return this.usuarioService.inserir(dadosUsuario) 
     }
 
-    @Put ('/:id')
-    async atualizaUsuario(@Param ('id') id:string, @Body() novosDados: alteraUsuarioDTO){
+    @Post('/login')
+    @ApiResponse({status: 201, description:'Retorna que houve sucesso na consulta'})    
+    @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
+    async fazerLogin(@Body() dadosLogin: loginUsuarioDTO){
+        var retornoLogin = await this.usuarioService.Login(dadosLogin.email,dadosLogin.senha)
+        var retorno = new RetornoUsuarioDTO(retornoLogin.status?'Login efetuado, sucesso':'Email ou senha invalidos!',retornoLogin.usuario);        
 
-        const usuarioAtualizado = await this.clsUsuariosArmazenados.atualizaUsuario(id, novosDados)
+        return retorno;       
+    }
 
-        return{
-            usuario: usuarioAtualizado,
-            message: 'Usuário atualizado'
-        }
+    @Put('/:id')
+    @ApiResponse({status: 200, description:'Retorna que houve sucesso na alteração'})
+    @ApiResponse({status: 500, description:'Retorna que houve erro na alteração.'})
+    @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
+    async alteraUsuario(@Body() dadosNovos: alteraUsuarioDTO,@Param('id') id: string){
+        return this.usuarioService.alterar(id,dadosNovos)             
     }
 
     @Delete('/:id')
+    @ApiResponse({status: 200, description:'Retorna que houve sucesso na exclusão'})
+    @ApiResponse({status: 500, description:'Retorna que houve erro na exclusão.'})
     async removeUsuario(@Param('id') id: string){
-        const usuarioRemovido = await this.clsUsuariosArmazenados.removeUsuario(id)
-
-        return{
-            usuario: usuarioRemovido,
-            message: 'Usuário removido'
-        }
+        return this.usuarioService.remover(id);   
     }
+
+    @Get('/:ID') 
+    @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
+    @ApiResponse({status: 500, description:'Retorna que houve erro na consulta.'})
+    async retornaUsuarioId(@Param('ID') ID:string){
+        var usuariosListados = await this.usuarioService.listarID(ID);
+        const ListaRetorno = new ListaUsuarioDTO(usuariosListados.ID,
+                                                usuariosListados.NOME,
+                                                usuariosListados.DATANASC,
+                                                usuariosListados.SEXO,
+                                                usuariosListados.TELEFONE,
+                                                usuariosListados.EMAIL)
+
+        return {
+                Usuario: ListaRetorno
+            };
+    }
+
 
     @Get()
-    todosUsuarios(){
-        return this.clsUsuariosArmazenados.todosUsuarios();
-    }
+    @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
+    async retornaUsuario(): Promise <ListagemUsuariosDTO>{
+        var usuariosListados = await this.usuarioService.listar();
+        const ListaRetorno = usuariosListados.map(
+            usuario => new ListaUsuarioDTO(
+                usuario.ID,
+                usuario.NOME,
+                usuario.DATANASC,
+                usuario.SEXO,
+                usuario.TELEFONE,
+                usuario.EMAIL,
+            )
+        );
 
-    @Get('/:id')
-    async buscarUsuarioPorId(@Param('id') id: string) {
-    const usuario = this.clsUsuariosArmazenados.buscaPorID(id);
-    return usuario;
-    }
+        const retorno = new ListagemUsuariosDTO(ListaRetorno);
 
-    @Post("/login")
-    async login(@Body() dadoslogin: LoginUsuarioDTO){
-        var login = await this.clsUsuariosArmazenados.validarLogin(dadoslogin.email, dadoslogin.senha);
- 
-        return{
-            status: login.login,
-            usuario: login.login?login.usuario: null,
-            message: login?"login Efetuado" : "Usuario ou senha Invalidos"
-        }
+
+        return retorno
     }
 }
