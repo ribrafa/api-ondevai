@@ -17,7 +17,7 @@ export class USUARIO{
     @Column({length: 255})
     SEXO: string;
 
-    @Column({ type: 'datetime' })
+    @Column({ length: 255 })
     TELEFONE: string; 
 
     @Column({length: 255})
@@ -30,9 +30,9 @@ export class USUARIO{
     // @JoinColumn({ name: 'IDPESSOA', referencedColumnName:'ID'})
     // PESSOA: PESSOA;
 
-    @OneToOne(() => FILES)
-    @JoinColumn({ name: 'FOTO', referencedColumnName:'ID'})
-    FILE: FILES;
+    // @OneToOne(() => FILES)
+    // @JoinColumn({ name: 'FOTO', referencedColumnName:'ID'})
+    // FILE: FILES;
   
     trocaSenha(senha){
         const saltOrRounds = 10;

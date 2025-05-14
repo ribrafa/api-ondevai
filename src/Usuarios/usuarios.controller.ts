@@ -8,7 +8,7 @@ import { ApiCreatedResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { USUARIOService } from "./usuario.service";
 import { RetornoCadastroDTO } from "src/dto/retorno.dto";
 
-@ApiTags('usuario')
+@ApiTags('usuarios')
 @Controller('/usuarios')
 export class UsuarioController{
     
@@ -26,7 +26,7 @@ export class UsuarioController{
     @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
     async fazerLogin(@Body() dadosLogin: loginUsuarioDTO){
         var retornoLogin = await this.usuarioService.Login(dadosLogin.email,dadosLogin.senha)
-        var retorno = new RetornoUsuarioDTO(retornoLogin.status?'Login efetuado, sucesso':'Email ou senha invalidos!',retornoLogin.usuario);        
+        var retorno = new RetornoUsuarioDTO(retornoLogin.status?'Login efetuado, sucesso':'Email ou senha invalidos!',retornoLogin.usuarios);        
 
         return retorno;       
     }
@@ -50,13 +50,14 @@ export class UsuarioController{
     @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na consulta.'})
     async retornaUsuarioId(@Param('ID') ID:string){
-        var usuariosListados = await this.usuarioService.listarID(ID);
+        var usuariosListados = await this.usuarioService.localizarID(ID);
         const ListaRetorno = new ListaUsuarioDTO(usuariosListados.ID,
                                                 usuariosListados.NOME,
                                                 usuariosListados.DATANASC,
                                                 usuariosListados.SEXO,
                                                 usuariosListados.TELEFONE,
-                                                usuariosListados.EMAIL)
+                                                usuariosListados.EMAIL,
+                                                usuariosListados.SENHA)
 
         return {
                 Usuario: ListaRetorno
@@ -76,6 +77,7 @@ export class UsuarioController{
                 usuario.SEXO,
                 usuario.TELEFONE,
                 usuario.EMAIL,
+                usuario.SENHA
             )
         );
 

@@ -1,9 +1,11 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString, MinLength } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { EmailUnico } from "src/validacao/email.validator";
 
 export class loginUsuarioDTO{
     
     @IsEmail(undefined, {message: "email inválido"})
+    @EmailUnico({ message: 'Já existe um usuário com este e-mail.' })
     @ApiProperty({
         example: "joao@teste.com",
         description: "Email do usuário, deve ser informado um email válido e que não se repita"

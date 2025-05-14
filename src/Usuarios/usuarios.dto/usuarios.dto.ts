@@ -1,7 +1,7 @@
 import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
-import { EmailUnico } from "../validacao/email-unico-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { SenhaForte } from "../validacao/senha-forte-validator";
+import { SenhaForte } from "../../validacao/senha-forte.validator";
+import { EmailUnico } from "src/validacao/email.validator";
 
 
 export class CriaUsuarioDTO{
@@ -39,7 +39,7 @@ export class CriaUsuarioDTO{
 
 
     @IsEmail(undefined,{message:"email é invalido"})
-    @EmailUnico({message:"email já cadastrado. Tente novamente"})
+    @EmailUnico({ message: 'Já existe um usuário com este e-mail.' })
     @ApiProperty({
         example: 'exple@email.com',
         description: 'deve conter apenas email do usuario'

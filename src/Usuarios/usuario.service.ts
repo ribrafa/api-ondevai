@@ -19,47 +19,24 @@ export class USUARIOService {
     this.objDatas = new Datas();
   }
 
-  async listar(): Promise<any[]> {
-
-    var usuarios = await (this.usuarioRepository
-      .createQueryBuilder('usuario')
-      .select('usuario.ID', 'ID')
-      .addSelect('PS.NOME', 'NOME')
-      .addSelect('usuario.foto', 'FOTO')
-      .addSelect('usuario.email', 'EMAIL')
-      .leftJoin('PESSOA', 'PS', 'usuario.idpessoa = PS.id')
-      .getRawMany());
-    return usuarios;
-  }
-
-  async listarID(ID: string): Promise<any> {
-
-    var usuario = await (this.usuarioRepository
-      .createQueryBuilder('usuario')
-      .select('usuario.ID', 'ID')
-      .addSelect('PS.NOME', 'NOME')
-      .addSelect('usuario.email', 'EMAIL')
-      .addSelect('usuario.foto', 'FOTO')
-      .leftJoin('PESSOA', 'PS', 'usuario.idpessoa = PS.id')
-      .andWhere('usuario.ID = :ID', { ID: `${ID}` })
-      .getRawOne());
-    return usuario;
-  }
+  async listar(): Promise<USUARIO[]> {
+  return await this.usuarioRepository.find();
+}
 
   async inserir(dados: CriaUsuarioDTO): Promise<RetornoCadastroDTO> {
-    let usuario = new USUARIO();
-    usuario.ID = uuid();
-    usuario.NOME = dados.NOME;
-    usuario.DATANASC = dados.DATANASC;
-    usuario.SEXO = dados.SEXO;
-    usuario.TELEFONE = dados.TELEFONE;
-    usuario.EMAIL = dados.EMAIL;
-    usuario.trocaSenha(dados.SENHA);
+    let usuarios = new USUARIO();
+    usuarios.ID = uuid();
+    usuarios.NOME = dados.NOME;
+    usuarios.DATANASC = dados.DATANASC;
+    usuarios.SEXO = dados.SEXO;
+    usuarios.TELEFONE = dados.TELEFONE;
+    usuarios.EMAIL = dados.EMAIL;
+    usuarios.trocaSenha(dados.SENHA);
     
-    return this.usuarioRepository.save(usuario)
+    return this.usuarioRepository.save(usuarios)
       .then((result) => {
         return <RetornoCadastroDTO>{
-          id: usuario.ID,
+          id: usuarios.ID,
           message: "USUARIO cadastrado!"
         };
       })
@@ -105,7 +82,7 @@ export class USUARIOService {
 
     return {
       //aqui é validada a senha, caso a senha esteja correta, é retornado os dados do usuário e também o status (true para correto, false para incorreto)
-      usuario: possivelUsuario ? (possivelUsuario.login(senha) ? possivelUsuario : null) : null,
+      usuarios: possivelUsuario ? (possivelUsuario.login(senha) ? possivelUsuario : null) : null,
       status: possivelUsuario ? possivelUsuario.login(senha): false
     };
   }
@@ -162,5 +139,10 @@ export class USUARIOService {
           message: "Houve um erro ao alterar." + error.message
         };
       });
-  }
+    }
+
+    async buscarPorEmail(email: string): Promise<USUARIO | null> {
+  return await this.usuarioRepository.findOne({ where: { EMAIL: email } });
+}
+
 }
