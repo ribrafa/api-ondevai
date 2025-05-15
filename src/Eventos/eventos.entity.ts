@@ -1,32 +1,40 @@
-export class EventoEntity {
-    id: string;
-    nome: string;
-    genero: string;
-    data: string;
-    horario: string;
-    classificacao: string;
-    descricao: string;
-    endereco: string;
-    numero: string;
-    cep: string;
-    cidade: string;
-    image: string
-    
-    constructor(id: string, nome: string, genero: string, data: string, horario: string, classificacao: string, descricao: string, endereco: string, numero: string, cep: string, cidade: string, image: string){
-        this.id = id;
-        this.nome = nome;
-        this.genero = genero;
-        this.data = data;
-        this.horario = horario;
-        this.classificacao = classificacao;
-        this.descricao = descricao;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.cep = cep;
-        this.cidade = cidade;
-        this.image = image;
-    }
-  }
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
+@Entity()
+export class EVENTO{
+    @PrimaryColumn()
+    ID: string;
 
-  
+    @Column({length: 255})
+    NOME: string;
+
+    @Column({length: 255})
+    GENERO: string;
+
+    @Column({length: 255})
+    DATA: string;
+
+    @Column({ length: 255 })
+    HORARIO: string; 
+
+    @Column({length: 255})
+    CLASSIFICACAO: string; 
+
+    @Column({length: 255})
+    DESCRICAO: string;
+
+    @Column({length: 255})
+    ENDERECO: string;
+
+    @Column({length: 255})
+    NUMERO: string;
+
+    @Column({length: 255})
+    CEP: string;
+
+    @Column({length: 255})
+    CIDADE: string;
+
+    @Column({length: 255})
+    IMAGE: string;
+}
