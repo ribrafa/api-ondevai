@@ -2,8 +2,8 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common"
 import { CriaUsuarioDTO } from "./usuarios.dto/usuarios.dto";
 import { RetornoUsuarioDTO } from "./usuarios.dto/retornoUsuario.dto";
 import { ListagemUsuariosDTO, ListaUsuarioDTO } from "./usuarios.dto/listaUsuario.dto";
-import { loginUsuarioDTO } from "./usuarios.dto/loginusuario.dto";
-import { alteraUsuarioDTO } from "./usuarios.dto/alterausuarios.dto";
+import { loginUsuarioDTO } from "./usuarios.dto/loginUsuario.dto";
+import { alteraUsuarioDTO } from "./usuarios.dto/alteraUsuarios.dto";
 import { ApiCreatedResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { USUARIOService } from "./usuario.service";
 import { RetornoCadastroDTO } from "src/dto/retorno.dto";

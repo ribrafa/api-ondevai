@@ -5,6 +5,7 @@ import { RetornoCadastroDTO, RetornoObjDTO } from 'src/dto/retorno.dto';
 import { EVENTO } from './eventos.entity';
 import { criarEventoDTO } from './eventos.dto/eventos.dto';
 import Datas from 'src/utils/data';
+import { alterarEventoDTO } from './eventos.dto/alteraeventos.dto';
 
 
 
@@ -70,7 +71,7 @@ export class EVENTOService {
   async remover(id: string): Promise<RetornoObjDTO> {
     const evento = await this.localizarID(id);
 
-    return this.usuarioRepository.remove(evento)
+    return this.eventoRepository.remove(evento)
       .then((result) => {
         return <RetornoObjDTO>{
           return: evento,
@@ -85,7 +86,7 @@ export class EVENTOService {
       });
   }
 
-  async alterar(id: string, dados: alteraUsuarioDTO): Promise<RetornoCadastroDTO> {
+  async alterar(id: string, dados: alterarEventoDTO): Promise<RetornoCadastroDTO> {
     const evento = await this.localizarID(id);
 
     Object.entries(dados).forEach(
@@ -113,7 +114,5 @@ export class EVENTOService {
         };
       });
     }
-
-}
 
 }

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class EVENTO{
@@ -8,8 +8,9 @@ export class EVENTO{
     @Column({length: 255})
     NOME: string;
 
-    @Column({length: 255})
-    GENERO: string;
+    @ManyToOne(() => GENERO, (genero) => genero.EVENTOS)
+    @JoinColumn({ name: 'ID_GENERO' }) // nome da FK no banco
+    GENERO: GENERO;
 
     @Column({length: 255})
     DATA: string;
