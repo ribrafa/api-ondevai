@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsOptional } from "class-validator";
+import { IsNotEmpty, IsString, IsOptional, IsIn, IsInt } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 
@@ -14,13 +14,13 @@ export class alterarEventoDTO{
     })
     NOME:string
 
-    @IsString()
+    @IsInt()
     @IsOptional()
     @ApiProperty({
         example: 'Musica/Show',
         description: 'Esse campo vai ser utilizado como identificação do genero do Evento a ser criado'
     })
-    GENERO: string;
+    GENERO: number;
 
     @IsString()
     @IsOptional()
@@ -28,7 +28,7 @@ export class alterarEventoDTO{
         example: '10/10/2010',
         description: 'Esse campo vai ser utilizado para descrever a data do Evento a ser criado'
     })
-    DATA: string;
+    DATA_EVENTO: string;
 
     @IsString()
     @IsOptional()

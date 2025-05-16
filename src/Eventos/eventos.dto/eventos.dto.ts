@@ -12,19 +12,19 @@ export class criarEventoDTO{
     })
     NOME:string
 
-    @IsString()
+    @IsInt()
     @ApiProperty({
         example: 'Musica/Show',
         description: 'Esse campo vai ser utilizado como identificação do genero do Evento a ser criado'
     })
-    GENERO: string;
+    GENERO: number;
 
     @IsString()
     @ApiProperty({
         example: '10/10/2010',
         description: 'Esse campo vai ser utilizado para descrever a data do Evento a ser criado'
     })
-    DATA: string;
+    DATA_EVENTO: string;
 
     @IsString()
     @ApiProperty({

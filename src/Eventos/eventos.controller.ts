@@ -41,7 +41,7 @@ export class EventoController{
         var eventosListados = await this.eventoService.localizarID(ID);
         const ListaRetorno = new ListaEventoDTO(eventosListados.ID,
                                                 eventosListados.NOME,
-                                                eventosListados.GENERO,
+                                                eventosListados.GENERO?.ID,
                                                 eventosListados.DATA,
                                                 eventosListados.HORARIO,
                                                 eventosListados.CLASSIFICACAO,
@@ -65,7 +65,7 @@ export class EventoController{
         const ListaRetorno = eventosListados.map(
             evento => new ListaEventoDTO(evento.ID,
                                         evento.NOME,
-                                        evento.GENERO,
+                                        evento.GENERO?.ID,
                                         evento.DATA,
                                         evento.HORARIO,
                                         evento.CLASSIFICACAO,

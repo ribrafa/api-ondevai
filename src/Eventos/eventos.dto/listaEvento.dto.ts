@@ -2,8 +2,8 @@ export class ListaEventoDTO{
     constructor(
         readonly ID: string,
         readonly NOME: string,
-        readonly GENERO: string,
-        readonly DATA: string,
+        readonly ID_GENERO: number,
+        readonly DATA_EVENTO: string,
         readonly HORARIO: string,
         readonly CLASSIFICACAO: string,
         readonly DESCRICAO: string,
