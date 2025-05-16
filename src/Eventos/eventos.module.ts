@@ -4,9 +4,10 @@ import { EventoController } from './eventos.controller';
 import { eventoProviders } from './eventos.providers';
 import { EVENTOService } from './evento.service';
 import { generoProviders } from 'src/Generos/genero.providers';
+import { UsuarioModule } from 'src/Usuarios/usuarios.module';
 
 @Module({  
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, UsuarioModule],
   controllers: [EventoController],  
   providers: [...eventoProviders,
     ...generoProviders,

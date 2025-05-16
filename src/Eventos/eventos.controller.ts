@@ -42,7 +42,7 @@ export class EventoController{
         const ListaRetorno = new ListaEventoDTO(eventosListados.ID,
                                                 eventosListados.NOME,
                                                 eventosListados.GENERO?.ID,
-                                                eventosListados.DATA,
+                                                eventosListados.DATA_EVENTO,
                                                 eventosListados.HORARIO,
                                                 eventosListados.CLASSIFICACAO,
                                                 eventosListados.DESCRICAO,
@@ -50,7 +50,9 @@ export class EventoController{
                                                 eventosListados.NUMERO,
                                                 eventosListados.CEP,
                                                 eventosListados.CIDADE,
-                                                eventosListados.IMAGE);
+                                                eventosListados.IMAGE,
+                                                eventosListados.USUARIO?.ID)
+                                                ;
 
         return {
                 Evento: ListaRetorno
@@ -66,7 +68,7 @@ export class EventoController{
             evento => new ListaEventoDTO(evento.ID,
                                         evento.NOME,
                                         evento.GENERO?.ID,
-                                        evento.DATA,
+                                        evento.DATA_EVENTO,
                                         evento.HORARIO,
                                         evento.CLASSIFICACAO,
                                         evento.DESCRICAO,
@@ -74,7 +76,8 @@ export class EventoController{
                                         evento.NUMERO,
                                         evento.CEP,
                                         evento.CIDADE,
-                                        evento.IMAGE
+                                        evento.IMAGE,
+                                        evento.USUARIO?.ID
             )
         );
 

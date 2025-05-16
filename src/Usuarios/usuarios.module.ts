@@ -8,8 +8,13 @@ import { EmailUnicoValidator } from 'src/validacao/email.validator';
 @Module({  
   imports: [DatabaseModule],
   controllers: [UsuarioController],  
-  providers: [...usuarioProviders,
+  providers: [
+    ...usuarioProviders,
     EmailUnicoValidator,
-    USUARIOService],
+    USUARIOService
+  ],
+  exports: [
+    ...usuarioProviders
+  ]
 })
 export class UsuarioModule {}

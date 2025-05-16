@@ -94,4 +94,10 @@ export class alterarEventoDTO{
     })
     IMAGE: string;
     
+    @IsString()
+    @ApiProperty({
+        example: 'imagemOnline.jpg',
+        description: 'Esse campo vai ser utilizado para selecionar a imagem de capa do Evento'
+    })
+    USUARIO: string;
 }

@@ -1,7 +1,7 @@
 {
     "NOME": "Vitoria Rock",
-    "GENERO": "Show de Rock",
-    "DATA":"2510191",
+    "GENERO": 1,
+    "DATA_EVENTO":"2510191",
     "HORARIO":"20:30",
     "CLASSIFICACAO":"+18",
     "DESCRICAO": "O evento de Rock ocorrerá na praça do Vitoria Regia",
@@ -9,7 +9,8 @@
     "NUMERO":"551",
     "CEP":"1715151158",
     "CIDADE":"Bauru",
-    "IMAGE": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg"
+    "IMAGE": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg",
+    "USUARIO": "3521702e-547e-466b-af67-0b116e01880f"
 }
 
 

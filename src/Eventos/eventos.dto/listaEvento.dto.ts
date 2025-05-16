@@ -11,7 +11,8 @@ export class ListaEventoDTO{
         readonly NUMERO: string,
         readonly CEP: string,
         readonly CIDADE: string,
-        readonly IMAGE: string
+        readonly IMAGE: string,
+        readonly ID_USUARIO: string
     ){}
 }
 

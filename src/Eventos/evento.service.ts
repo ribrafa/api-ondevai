@@ -4,9 +4,9 @@ import { v4 as uuid } from 'uuid';
 import { RetornoCadastroDTO, RetornoObjDTO } from 'src/dto/retorno.dto';
 import { EVENTO } from './eventos.entity';
 import { criarEventoDTO } from './eventos.dto/eventos.dto';
-import Datas from 'src/utils/data';
 import { alterarEventoDTO } from './eventos.dto/alteraeventos.dto';
 import { GENERO } from 'src/Generos/genero.entity';
+import { USUARIO } from 'src/Usuarios/usuarios.entity';
 
 
 @Injectable()
@@ -16,12 +16,15 @@ export class EVENTOService {
     private eventoRepository: Repository<EVENTO>,
 
     @Inject('GENERO_REPOSITORY')
-    private generoRepository: Repository<GENERO>
+    private generoRepository: Repository<GENERO>,
+
+    @Inject('USUARIO_REPOSITORY')
+  private usuarioRepository: Repository<USUARIO>
   ) {}
 
   async listar(): Promise<EVENTO[]> {
     return await this.eventoRepository.find({
-      relations: ['GENERO'],
+      relations: ['GENERO','USUARIO'],
     });
   }
 
@@ -30,15 +33,19 @@ export class EVENTOService {
     evento.ID = uuid();
     evento.NOME = dados.NOME;
     
-    // Verifica se o gênero foi encontrado
     const genero = await this.generoRepository.findOne({ where: { ID: dados.GENERO } });
 
     if (!genero) {
         throw new Error(`GENERO com ID ${dados.GENERO} não encontrado`);
     }
 
-    evento.GENERO = genero; // Atribui o objeto de Gênero encontrado
-    evento.DATA = dados.DATA_EVENTO;
+    const usuario = await this.usuarioRepository.findOne({ where: { ID: dados.USUARIO } });
+  if (!usuario) {
+    throw new Error(`USUARIO com ID ${dados.USUARIO} não encontrado`);
+  }
+
+    evento.GENERO = genero;
+    evento.DATA_EVENTO = dados.DATA_EVENTO;
     evento.HORARIO = dados.HORARIO;
     evento.CLASSIFICACAO = dados.CLASSIFICACAO;
     evento.DESCRICAO = dados.DESCRICAO;
@@ -47,6 +54,7 @@ export class EVENTOService {
     evento.CEP = dados.CEP;
     evento.CIDADE = dados.CIDADE;
     evento.IMAGE = dados.IMAGE;
+    evento.USUARIO = usuario;
 
     return this.eventoRepository.save(evento)
         .then((result) => {
@@ -66,7 +74,7 @@ export class EVENTOService {
   async localizarID(ID: string): Promise<EVENTO> {
     const objeto = await this.eventoRepository.findOne({
       where: { ID },
-      relations: ['GENERO'],
+      relations: ['GENERO','USUARIO'],
     });
   
     if (!objeto) {

@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { RetornoCadastroDTO, RetornoObjDTO } from 'src/dto/retorno.dto';
 import { USUARIO } from './usuarios.entity';
 import { CriaUsuarioDTO } from './usuarios.dto/usuarios.dto';
-import { alteraUsuarioDTO } from './usuarios.dto/alterausuarios.dto';
+import { alteraUsuarioDTO } from './usuarios.dto/alteraUsuarios.dto';
 import Datas from 'src/utils/data';
 
 

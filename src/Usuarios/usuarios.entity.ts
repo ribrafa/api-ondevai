@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcrypt';
+import { EVENTO } from 'src/Eventos/eventos.entity';
 import { FILES } from 'src/files/files.entity';
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 
-//classe de usuário, utilizado para manter padrão dos usuários armazenados
 @Entity()
 export class USUARIO{
     @PrimaryColumn()
@@ -25,15 +25,10 @@ export class USUARIO{
 
     @Column({length: 255})
     SENHA: string; 
+    
+    @OneToMany(() => EVENTO, evento => evento.USUARIO)
+    EVENTOS: EVENTO[]; 
 
-    // @OneToOne(() => PESSOA)
-    // @JoinColumn({ name: 'IDPESSOA', referencedColumnName:'ID'})
-    // PESSOA: PESSOA;
-
-    // @OneToOne(() => FILES)
-    // @JoinColumn({ name: 'FOTO', referencedColumnName:'ID'})
-    // FILE: FILES;
-  
     trocaSenha(senha){
         const saltOrRounds = 10;
         this.SENHA = bcrypt.hashSync(senha,saltOrRounds)

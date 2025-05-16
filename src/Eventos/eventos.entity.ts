@@ -1,4 +1,5 @@
 import { GENERO } from 'src/Generos/genero.entity';
+import { USUARIO } from 'src/Usuarios/usuarios.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
 @Entity()
@@ -14,7 +15,7 @@ export class EVENTO{
     GENERO: GENERO;
 
     @Column({length: 255})
-    DATA: string;
+    DATA_EVENTO: string;
 
     @Column({ length: 255 })
     HORARIO: string; 
@@ -39,4 +40,8 @@ export class EVENTO{
 
     @Column({length: 255})
     IMAGE: string;
+
+    @ManyToOne(() => USUARIO)
+    @JoinColumn({ name: 'ID_USUARIO' })
+    USUARIO: USUARIO;
 }
