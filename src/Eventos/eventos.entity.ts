@@ -5,43 +5,43 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 @Entity()
 export class EVENTO{
     @PrimaryColumn()
-    ID: string;
+    id: string;
 
     @Column({length: 255})
-    NOME: string;
+    nome: string;
 
-    @ManyToOne(() => GENERO, (genero) => genero.EVENTOS)
-    @JoinColumn({ name: 'ID_GENERO' })
-    GENERO: GENERO;
+    @ManyToOne(() => GENERO, (genero) => genero.eventos)
+    @JoinColumn({ name: 'id_genero' })
+    genero: GENERO;
 
     @Column({length: 255})
-    DATA_EVENTO: string;
+    data_evento: string;
 
     @Column({ length: 255 })
-    HORARIO: string; 
+    horario: string; 
+
+    @Column({})
+    classificacao: number; 
 
     @Column({length: 255})
-    CLASSIFICACAO: string; 
+    descricao: string;
 
     @Column({length: 255})
-    DESCRICAO: string;
+    endereco: string;
 
     @Column({length: 255})
-    ENDERECO: string;
+    numero: string;
 
     @Column({length: 255})
-    NUMERO: string;
+    cep: string;
 
     @Column({length: 255})
-    CEP: string;
+    cidade: string;
 
     @Column({length: 255})
-    CIDADE: string;
-
-    @Column({length: 255})
-    IMAGE: string;
+    image: string;
 
     @ManyToOne(() => USUARIO)
-    @JoinColumn({ name: 'ID_USUARIO' })
-    USUARIO: USUARIO;
+    @JoinColumn({ name: 'id_usuario' })
+    usuario: USUARIO;
 }

@@ -25,18 +25,18 @@ export class USUARIOService {
 
   async inserir(dados: CriaUsuarioDTO): Promise<RetornoCadastroDTO> {
     let usuarios = new USUARIO();
-    usuarios.ID = uuid();
-    usuarios.NOME = dados.NOME;
-    usuarios.DATANASC = dados.DATANASC;
-    usuarios.SEXO = dados.SEXO;
-    usuarios.TELEFONE = dados.TELEFONE;
-    usuarios.EMAIL = dados.EMAIL;
-    usuarios.trocaSenha(dados.SENHA);
+    usuarios.id = uuid();
+    usuarios.nome = dados.nome;
+    usuarios.datanasc = dados.datanasc;
+    usuarios.sexo = dados.sexo;
+    usuarios.telefone = dados.telefone;
+    usuarios.email = dados.email;
+    usuarios.trocaSenha(dados.senha);
     
     return this.usuarioRepository.save(usuarios)
       .then((result) => {
         return <RetornoCadastroDTO>{
-          id: usuarios.ID,
+          id: usuarios.id,
           message: "USUARIO cadastrado!"
         };
       })
@@ -48,29 +48,29 @@ export class USUARIOService {
     })
   }
 
-  async localizarID(ID: string): Promise<USUARIO> {
+  async localizarID(id: string): Promise<USUARIO> {
     const objeto = await this.usuarioRepository.findOne({
       where: {
-        ID,
+        id,
       },
     });
 
     if (!objeto) {
-        throw new Error(`PESSOA com ID ${ID} não encontrado`);
+        throw new Error(`PESSOA com ID ${id} não encontrado`);
     }
 
     return objeto;
   }
 
-  async localizarEmail(EMAIL: string): Promise<USUARIO> {
+  async localizarEmail(email: string): Promise<USUARIO> {
     const objeto = await this.usuarioRepository.findOne({
       where: {
-        EMAIL,
+        email,
       },
     });
 
     if (!objeto) {
-        throw new Error(`PESSOA com EMAIL ${EMAIL} não encontrado`);
+        throw new Error(`PESSOA com EMAIL ${email} não encontrado`);
     }
 
     return objeto;
@@ -129,7 +129,7 @@ export class USUARIOService {
     return this.usuarioRepository.save(usuario)
       .then((result) => {
         return <RetornoCadastroDTO>{
-          id: usuario.ID,
+          id: usuario.id,
           message: "USUARIO alterado!"
         };
       })
@@ -142,7 +142,7 @@ export class USUARIOService {
     }
 
     async buscarPorEmail(email: string): Promise<USUARIO | null> {
-  return await this.usuarioRepository.findOne({ where: { EMAIL: email } });
+  return await this.usuarioRepository.findOne({ where: { email: email } });
 }
 
 }

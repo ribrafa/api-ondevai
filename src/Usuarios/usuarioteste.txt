@@ -1,10 +1,10 @@
 {
-    "NOME": "Rafael",
-    "DATANASC": "27/10/1994",
-    "SEXO": "masculino",
-   "TELEFONE": "14123456115", 
-   "EMAIL": "rafael@email.com",      
-    "SENHA": "Rr@12345678987"
+    "nome": "Rafael",
+    "datanasc": "27/10/1994",
+    "sexo": "masculino",
+    "telefone": "14123456115", 
+    "email": "rafael@email.com",      
+    "senha": "Rr@12345678987"
 }
 
 

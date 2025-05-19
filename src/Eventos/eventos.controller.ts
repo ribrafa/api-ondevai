@@ -34,24 +34,24 @@ export class EventoController{
         return this.eventoService.remover(id);   
     }
 
-    @Get('/:ID') 
+    @Get('/:id') 
     @ApiResponse({status: 200, description:'Retorna que houve sucesso na consulta'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na consulta.'})
-    async retornaEventoId(@Param('ID') ID:string){
-        var eventosListados = await this.eventoService.localizarID(ID);
-        const ListaRetorno = new ListaEventoDTO(eventosListados.ID,
-                                                eventosListados.NOME,
-                                                eventosListados.GENERO?.ID,
-                                                eventosListados.DATA_EVENTO,
-                                                eventosListados.HORARIO,
-                                                eventosListados.CLASSIFICACAO,
-                                                eventosListados.DESCRICAO,
-                                                eventosListados.ENDERECO,
-                                                eventosListados.NUMERO,
-                                                eventosListados.CEP,
-                                                eventosListados.CIDADE,
-                                                eventosListados.IMAGE,
-                                                eventosListados.USUARIO?.ID)
+    async retornaEventoId(@Param('id') id:string){
+        var eventosListados = await this.eventoService.localizarID(id);
+        const ListaRetorno = new ListaEventoDTO(eventosListados.id,
+                                                eventosListados.nome,
+                                                eventosListados.genero?.id,
+                                                eventosListados.data_evento,
+                                                eventosListados.horario,
+                                                eventosListados.classificacao,
+                                                eventosListados.descricao,
+                                                eventosListados.endereco,
+                                                eventosListados.numero,
+                                                eventosListados.cep,
+                                                eventosListados.cidade,
+                                                eventosListados.image,
+                                                eventosListados.usuario?.id)
                                                 ;
 
         return {
@@ -65,19 +65,19 @@ export class EventoController{
     async retornaEvento(): Promise <ListagemEventosDTO>{
         var eventosListados = await this.eventoService.listar();
         const ListaRetorno = eventosListados.map(
-            evento => new ListaEventoDTO(evento.ID,
-                                        evento.NOME,
-                                        evento.GENERO?.ID,
-                                        evento.DATA_EVENTO,
-                                        evento.HORARIO,
-                                        evento.CLASSIFICACAO,
-                                        evento.DESCRICAO,
-                                        evento.ENDERECO,
-                                        evento.NUMERO,
-                                        evento.CEP,
-                                        evento.CIDADE,
-                                        evento.IMAGE,
-                                        evento.USUARIO?.ID
+            evento => new ListaEventoDTO(evento.id,
+                                        evento.nome,
+                                        evento.genero?.id,
+                                        evento.data_evento,
+                                        evento.horario,
+                                        evento.classificacao,
+                                        evento.descricao,
+                                        evento.endereco,
+                                        evento.numero,
+                                        evento.cep,
+                                        evento.cidade,
+                                        evento.image,
+                                        evento.usuario?.id
             )
         );
 

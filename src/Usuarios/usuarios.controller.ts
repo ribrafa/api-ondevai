@@ -51,13 +51,13 @@ export class UsuarioController{
     @ApiResponse({status: 500, description:'Retorna que houve erro na consulta.'})
     async retornaUsuarioId(@Param('ID') ID:string){
         var usuariosListados = await this.usuarioService.localizarID(ID);
-        const ListaRetorno = new ListaUsuarioDTO(usuariosListados.ID,
-                                                usuariosListados.NOME,
-                                                usuariosListados.DATANASC,
-                                                usuariosListados.SEXO,
-                                                usuariosListados.TELEFONE,
-                                                usuariosListados.EMAIL,
-                                                usuariosListados.SENHA)
+        const ListaRetorno = new ListaUsuarioDTO(usuariosListados.id,
+                                                usuariosListados.nome,
+                                                usuariosListados.datanasc,
+                                                usuariosListados.sexo,
+                                                usuariosListados.telefone,
+                                                usuariosListados.email,
+                                                usuariosListados.senha)
 
         return {
                 Usuario: ListaRetorno
@@ -71,13 +71,13 @@ export class UsuarioController{
         var usuariosListados = await this.usuarioService.listar();
         const ListaRetorno = usuariosListados.map(
             usuario => new ListaUsuarioDTO(
-                usuario.ID,
-                usuario.NOME,
-                usuario.DATANASC,
-                usuario.SEXO,
-                usuario.TELEFONE,
-                usuario.EMAIL,
-                usuario.SENHA
+                usuario.id,
+                usuario.nome,
+                usuario.datanasc,
+                usuario.sexo,
+                usuario.telefone,
+                usuario.email,
+                usuario.senha
             )
         );
 

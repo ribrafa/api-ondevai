@@ -6,35 +6,35 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from '
 @Entity()
 export class USUARIO{
     @PrimaryColumn()
-    ID: string;
+    id: string;
 
     @Column({length: 255})
-    NOME: string;
+    nome: string;
 
     @Column({length: 255})
-    DATANASC: string;
+    datanasc: string;
 
-    @Column({length: 255})
-    SEXO: string;
+    @Column({})
+    sexo: number;
 
     @Column({ length: 255 })
-    TELEFONE: string; 
+    telefone: string; 
 
     @Column({length: 255})
-    EMAIL: string; 
+    email: string; 
 
     @Column({length: 255})
-    SENHA: string; 
+    senha: string; 
     
-    @OneToMany(() => EVENTO, evento => evento.USUARIO)
-    EVENTOS: EVENTO[]; 
+    @OneToMany(() => EVENTO, evento => evento.usuario)
+    eventos: EVENTO[]; 
 
     trocaSenha(senha){
         const saltOrRounds = 10;
-        this.SENHA = bcrypt.hashSync(senha,saltOrRounds)
+        this.senha = bcrypt.hashSync(senha,saltOrRounds)
     }
 
     login(senha){
-        return bcrypt.compareSync(senha,this.SENHA);
+        return bcrypt.compareSync(senha,this.senha);
     }
 }

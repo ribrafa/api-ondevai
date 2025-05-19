@@ -1,4 +1,4 @@
-import { IsEmail, IsInt, IsNotEmpty, IsOptional, IsString, MinLength } from "class-validator";
+import { IsEmail, IsInt, IsNotEmpty, IsNumber, IsOptional, IsString, MinLength } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { SenhaForte } from "../../validacao/senha-forte.validator";
 import { EmailUnico } from "src/validacao/email.validator";
@@ -11,7 +11,7 @@ export class alteraUsuarioDTO{
         example: 'Djalma Mansueto',
         description: 'Esse campo vai ser utilizado como identificação do usuario'
     })
-    NOME:string;
+    nome:string;
 
     @IsString()
     @IsOptional()
@@ -19,14 +19,15 @@ export class alteraUsuarioDTO{
         example: "01/01/2000",
         description:'Esse campo vai ser utilizado para definir data de nascimento'
     })
-    DATANASC: string;
-    @IsString()
+
+    datanasc: string;
+    @IsNumber()
     @IsOptional()
     @ApiProperty({
         example: "Masculino,Feminino e Outros",
         description:'Esse campo vai ser utilizado para definir o sexo do Usuario'
     })
-    SEXO:string;
+    sexo:number;
 
     @IsString()
     @IsOptional()
@@ -34,7 +35,7 @@ export class alteraUsuarioDTO{
         example: '14-991100370',
         description: 'deve constar numero de telefone do usuario '
     })
-    TELEFONE: string;
+    telefone: string;
 
     @IsEmail(undefined,{message:"email é invalido"})
     @EmailUnico({ message: 'Já existe um usuário com este e-mail.' })
@@ -43,7 +44,7 @@ export class alteraUsuarioDTO{
         example: 'djalma.mansueto@gmail.com',
         description: 'deve conter apenas email do usuario'
     })
-    EMAIL: string;
+    email: string;
 
 
     @MinLength(6,{message:"Senha precisa de pelo menos 6 digitos"})
@@ -53,7 +54,7 @@ export class alteraUsuarioDTO{
         example:'Kjszkjk01@',
         description:'a senha deve conter letras Maiuscolas, minuscolas, numeros e caracteres'
     })
-    SENHA: string;
+    senha: string;
     
 
 }

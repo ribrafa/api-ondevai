@@ -4,11 +4,11 @@ import { EVENTO } from '../Eventos/eventos.entity';
 @Entity()
 export class GENERO {
   @PrimaryGeneratedColumn()
-  ID: number;
+  id: number;
 
   @Column()
-  NOME: string;
+  nome: string;
 
-  @OneToMany(() => EVENTO, (evento) => evento.GENERO)
-  EVENTOS: EVENTO[];
+  @OneToMany(() => EVENTO, (evento) => evento.genero)
+  eventos: EVENTO[];
 }

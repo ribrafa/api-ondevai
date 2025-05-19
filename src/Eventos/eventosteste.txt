@@ -1,16 +1,16 @@
 {
-    "NOME": "Vitoria Rock",
-    "GENERO": 1,
-    "DATA_EVENTO":"2510191",
-    "HORARIO":"20:30",
-    "CLASSIFICACAO":"+18",
-    "DESCRICAO": "O evento de Rock ocorrerá na praça do Vitoria Regia",
-    "ENDERECO":"Rua 10 535",
-    "NUMERO":"551",
-    "CEP":"1715151158",
-    "CIDADE":"Bauru",
-    "IMAGE": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg",
-    "USUARIO": "3521702e-547e-466b-af67-0b116e01880f"
+    "nome": "Vitoria Rock",
+    "genero": 1,
+    "data_evento":"2510191",
+    "horario":"20:30",
+    "classificacao":"+18",
+    "descricao": "O evento de Rock ocorrerá na praça do Vitoria Regia",
+    "endereco":"Rua 10 535",
+    "numero":"551",
+    "cep":"1715151158",
+    "cidade":"Bauru",
+    "image": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg",
+    "usuario": "7844f410-fc36-406c-b3d8-5b9609591f54"
 }
 
 

@@ -12,7 +12,7 @@ export class alterarEventoDTO{
         example: 'Samba 90s',
         description: 'Esse campo vai ser utilizado como identificação do nome do Evento a ser criado'
     })
-    NOME:string
+    nome:string
 
     @IsInt()
     @IsOptional()
@@ -20,7 +20,7 @@ export class alterarEventoDTO{
         example: 'Musica/Show',
         description: 'Esse campo vai ser utilizado como identificação do genero do Evento a ser criado'
     })
-    GENERO: number;
+    genero: number;
 
     @IsString()
     @IsOptional()
@@ -28,7 +28,7 @@ export class alterarEventoDTO{
         example: '10/10/2010',
         description: 'Esse campo vai ser utilizado para descrever a data do Evento a ser criado'
     })
-    DATA_EVENTO: string;
+    data_evento: string;
 
     @IsString()
     @IsOptional()
@@ -36,15 +36,15 @@ export class alterarEventoDTO{
         example: '18:00',
         description: 'Esse campo vai ser utilizado para descrever o horario do Evento a ser criado'
     })
-    HORARIO: string;
+    horario: string;
 
-    @IsString()
+    @IsInt()
     @IsOptional()
     @ApiProperty({
         example: '+18 ou Livre',
         description: 'Esse campo vai ser utilizado para informar a classficação do evento'
     })
-    CLASSIFICACAO: string;
+    classificacao: number;
 
     @IsString()
     @IsOptional()
@@ -52,7 +52,7 @@ export class alterarEventoDTO{
         example: 'O evento Samba 90s está em sua 6ª edição e vai ocorrer no dia...',
         description: 'Esse campo vai ser utilizado para descrever o Evento a ser criado'
     })
-    DESCRICAO: string;
+    descricao: string;
 
     @IsString()
     @IsOptional()
@@ -60,7 +60,7 @@ export class alterarEventoDTO{
         example: 'Rua 10',
         description: 'Esse campo vai ser utilizado como identificação do endereço do Evento a ser criado'
     })
-    ENDERECO: string;
+    endereco: string;
 
     @IsString()
     @IsOptional()
@@ -68,7 +68,7 @@ export class alterarEventoDTO{
         example: 'Numero 8-53',
         description: 'Esse campo vai ser utilizado como identificação do numero do endereço do Evento a ser criado'
     })
-    NUMERO: string;
+    numero: string;
 
     @IsString()
     @IsOptional()
@@ -76,7 +76,7 @@ export class alterarEventoDTO{
         example: '17017000',
         description: 'Esse campo vai ser utilizado como identificação do CEP do Evento a ser criado'
     })
-    CEP: string;
+    cep: string;
 
     @IsString()
     @IsOptional()
@@ -84,7 +84,7 @@ export class alterarEventoDTO{
         example: 'São Paulo',
         description: 'Esse campo vai ser utilizado como identificação da cidade do Evento a ser criado'
     })
-    CIDADE: string;
+    cidade: string;
 
     @IsString()
     @IsOptional()
@@ -92,12 +92,12 @@ export class alterarEventoDTO{
         example: 'imagemOnline.jpg',
         description: 'Esse campo vai ser utilizado para selecionar a imagem de capa do Evento'
     })
-    IMAGE: string;
+    image: string;
     
     @IsString()
     @ApiProperty({
         example: 'imagemOnline.jpg',
         description: 'Esse campo vai ser utilizado para selecionar a imagem de capa do Evento'
     })
-    USUARIO: string;
+    usuario: string;
 }
