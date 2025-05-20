@@ -48,8 +48,7 @@ export class EventoController{
                                                 eventosListados.descricao,
                                                 eventosListados.endereco,
                                                 eventosListados.numero,
-                                                eventosListados.cep,
-                                                eventosListados.cidade,
+                                                eventosListados.cidade?.id,
                                                 eventosListados.image,
                                                 eventosListados.usuario?.id)
                                                 ;
@@ -74,8 +73,7 @@ export class EventoController{
                                         evento.descricao,
                                         evento.endereco,
                                         evento.numero,
-                                        evento.cep,
-                                        evento.cidade,
+                                        evento.cidade?.id,
                                         evento.image,
                                         evento.usuario?.id
             )

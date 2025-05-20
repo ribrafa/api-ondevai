@@ -9,8 +9,7 @@ export class ListaEventoDTO{
         readonly descricao: string,
         readonly endereco: string,
         readonly numero: string,
-        readonly cep: string,
-        readonly cidade: string,
+        readonly cidade: number,
         readonly image: string,
         readonly id_usuario: string
     ){}

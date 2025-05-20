@@ -70,21 +70,14 @@ export class alterarEventoDTO{
     })
     numero: string;
 
-    @IsString()
-    @IsOptional()
-    @ApiProperty({
-        example: '17017000',
-        description: 'Esse campo vai ser utilizado como identificação do CEP do Evento a ser criado'
-    })
-    cep: string;
 
-    @IsString()
+    @IsInt()
     @IsOptional()
     @ApiProperty({
         example: 'São Paulo',
         description: 'Esse campo vai ser utilizado como identificação da cidade do Evento a ser criado'
     })
-    cidade: string;
+    cidade: number;
 
     @IsString()
     @IsOptional()

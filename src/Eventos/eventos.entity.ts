@@ -1,3 +1,4 @@
+import { CIDADE } from 'src/Cidades/cidade.entity';
 import { GENERO } from 'src/Generos/genero.entity';
 import { USUARIO } from 'src/Usuarios/usuarios.entity';
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
@@ -32,11 +33,9 @@ export class EVENTO{
     @Column({length: 255})
     numero: string;
 
-    @Column({length: 255})
-    cep: string;
-
-    @Column({length: 255})
-    cidade: string;
+    @ManyToOne(() => CIDADE, (cidade) => cidade.eventos)
+    @JoinColumn({ name: 'id_cidade' })
+    cidade: CIDADE;
 
     @Column({length: 255})
     image: string;

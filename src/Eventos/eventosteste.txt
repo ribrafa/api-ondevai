@@ -3,14 +3,14 @@
     "genero": 1,
     "data_evento":"2510191",
     "horario":"20:30",
-    "classificacao":"+18",
+    "classificacao":1,
     "descricao": "O evento de Rock ocorrerá na praça do Vitoria Regia",
     "endereco":"Rua 10 535",
     "numero":"551",
     "cep":"1715151158",
     "cidade":"Bauru",
     "image": "https://i.ytimg.com/vi/XRiaBJXL_-k/maxresdefault.jpg",
-    "usuario": "7844f410-fc36-406c-b3d8-5b9609591f54"
+    "usuario": "dbe39137-bcd4-4fbf-8ca8-29f788b8d65e"
 }
 
 

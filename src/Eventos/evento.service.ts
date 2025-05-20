@@ -18,13 +18,16 @@ export class EVENTOService {
     @Inject('GENERO_REPOSITORY')
     private generoRepository: Repository<GENERO>,
 
+    @Inject('CIDADE_REPOSITORY')
+    private cidadeRepository: Repository<GENERO>,
+
     @Inject('USUARIO_REPOSITORY')
-  private usuarioRepository: Repository<USUARIO>
-  ) {}
+    private usuarioRepository: Repository<USUARIO>
+  ) { }
 
   async listar(): Promise<EVENTO[]> {
     return await this.eventoRepository.find({
-      relations: ['genero','usuario'],
+      relations: ['genero', 'usuario'],
     });
   }
 
@@ -32,17 +35,22 @@ export class EVENTOService {
     let evento = new EVENTO();
     evento.id = uuid();
     evento.nome = dados.nome;
-    
-    const genero = await this.generoRepository.findOne({ where: { id: dados.genero } });
 
+
+    const cidade = await this.cidadeRepository.findOne({ where: { id: dados.cidade } });
+    if (!cidade) {
+      throw new Error(`CIDADE com ID ${dados.cidade} não encontrado`);
+    }
+
+    const genero = await this.generoRepository.findOne({ where: { id: dados.genero } });
     if (!genero) {
-        throw new Error(`GENERO com ID ${dados.genero} não encontrado`);
+      throw new Error(`GENERO com ID ${dados.genero} não encontrado`);
     }
 
     const usuario = await this.usuarioRepository.findOne({ where: { id: dados.usuario } });
-  if (!usuario) {
-    throw new Error(`USUARIO com ID ${dados.usuario} não encontrado`);
-  }
+    if (!usuario) {
+      throw new Error(`USUARIO com ID ${dados.usuario} não encontrado`);
+    }
 
     evento.genero = genero;
     evento.data_evento = dados.data_evento;
@@ -51,36 +59,35 @@ export class EVENTOService {
     evento.descricao = dados.descricao;
     evento.endereco = dados.endereco;
     evento.numero = dados.numero;
-    evento.cep = dados.cep;
-    evento.cidade = dados.cidade;
+    evento.cidade = cidade;
     evento.image = dados.image;
     evento.usuario = usuario;
 
     return this.eventoRepository.save(evento)
-        .then((result) => {
-            return {
-                id: evento.id,
-                message: "EVENTO cadastrado!"
-            } as RetornoCadastroDTO;
-        })
-        .catch((error) => {
-            return {
-                id: "",
-                message: "Houve um erro ao cadastrar." + error.message
-            } as RetornoCadastroDTO;
-        });
-}
+      .then((result) => {
+        return {
+          id: evento.id,
+          message: "EVENTO cadastrado!"
+        } as RetornoCadastroDTO;
+      })
+      .catch((error) => {
+        return {
+          id: "",
+          message: "Houve um erro ao cadastrar." + error.message
+        } as RetornoCadastroDTO;
+      });
+  }
 
   async localizarID(id: string): Promise<EVENTO> {
     const objeto = await this.eventoRepository.findOne({
       where: { id },
-      relations: ['genero','usuario'],
+      relations: ['genero', 'usuario'],
     });
-  
+
     if (!objeto) {
       throw new Error(`EVENTO com ID ${id} não encontrado`);
     }
-  
+
     return objeto;
   }
 
@@ -111,7 +118,7 @@ export class EVENTOService {
         if (chave === 'ID') {
           return;
         }
-        else{
+        else {
           evento[chave] = valor;
         }
       }
@@ -130,6 +137,6 @@ export class EVENTOService {
           message: "Houve um erro ao alterar." + error.message
         };
       });
-    }
+  }
 
 }
