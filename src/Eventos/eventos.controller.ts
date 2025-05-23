@@ -42,6 +42,7 @@ export class EventoController{
         const ListaRetorno = new ListaEventoDTO(eventosListados.id,
                                                 eventosListados.nome,
                                                 eventosListados.genero?.id,
+                                                eventosListados.genero?.nome || '',
                                                 eventosListados.data_evento,
                                                 eventosListados.horario,
                                                 eventosListados.classificacao,
@@ -49,6 +50,7 @@ export class EventoController{
                                                 eventosListados.endereco,
                                                 eventosListados.numero,
                                                 eventosListados.cidade?.id,
+                                                eventosListados.cidade?.nome || '',
                                                 eventosListados.image,
                                                 eventosListados.usuario?.id)
                                                 ;
@@ -67,6 +69,7 @@ export class EventoController{
             evento => new ListaEventoDTO(evento.id,
                                         evento.nome,
                                         evento.genero?.id,
+                                        evento.genero?.nome || '',
                                         evento.data_evento,
                                         evento.horario,
                                         evento.classificacao,
@@ -74,6 +77,7 @@ export class EventoController{
                                         evento.endereco,
                                         evento.numero,
                                         evento.cidade?.id,
+                                        evento.cidade?.nome || '',
                                         evento.image,
                                         evento.usuario?.id
             )

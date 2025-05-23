@@ -27,7 +27,7 @@ export class EVENTOService {
 
   async listar(): Promise<EVENTO[]> {
     return await this.eventoRepository.find({
-      relations: ['genero', 'usuario'],
+      relations: ['genero', 'cidade', 'usuario'],
     });
   }
 
@@ -81,7 +81,7 @@ export class EVENTOService {
   async localizarID(id: string): Promise<EVENTO> {
     const objeto = await this.eventoRepository.findOne({
       where: { id },
-      relations: ['genero', 'usuario'],
+      relations: ['genero','cidade', 'usuario'],
     });
 
     if (!objeto) {
