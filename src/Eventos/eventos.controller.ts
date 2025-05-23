@@ -54,7 +54,7 @@ export class EventoController{
                                                 ;
 
         return {
-                Evento: ListaRetorno
+                evento: ListaRetorno
             };
     }
 

@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { CIDADE } from './cidade.entity';
 
-export const generoProviders = [
+export const cidadeProviders = [
   {
     provide: 'CIDADE_REPOSITORY',
     useFactory: (dataSource: DataSource) =>
