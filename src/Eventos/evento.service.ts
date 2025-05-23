@@ -7,6 +7,7 @@ import { criarEventoDTO } from './eventos.dto/eventos.dto';
 import { alterarEventoDTO } from './eventos.dto/alteraeventos.dto';
 import { GENERO } from 'src/Generos/genero.entity';
 import { USUARIO } from 'src/Usuarios/usuarios.entity';
+import { FiltroEventosDto } from './eventos.dto/filtroeventos.dto';
 
 
 @Injectable()
@@ -137,6 +138,28 @@ export class EVENTOService {
           message: "Houve um erro ao alterar." + error.message
         };
       });
+      
   }
 
+  async filtrarEventos(filtro: FiltroEventosDto): Promise<EVENTO[]> {
+  const query = this.eventoRepository.createQueryBuilder('evento')
+    .leftJoinAndSelect('evento.genero', 'genero')
+    .leftJoinAndSelect('evento.cidade', 'cidade');
+    
+
+  if (filtro.data) {
+    query.andWhere('evento.data_evento = :data', { data: filtro.data });
+  }
+
+  if (filtro.genero && filtro.genero !== '0') {
+    query.andWhere('genero.id = :genero', { genero: filtro.genero });
+  }
+
+  if (filtro.cidade && filtro.cidade !== '0') {
+    query.andWhere('cidade.id = :cidade', { cidade: filtro.cidade });
+  }
+
+  return query.getMany();
 }
+}
+

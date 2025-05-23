@@ -5,6 +5,7 @@ import { EVENTOService } from "./evento.service";
 import { criarEventoDTO } from "./eventos.dto/eventos.dto";
 import { alterarEventoDTO } from "./eventos.dto/alteraeventos.dto";
 import { ListaEventoDTO, ListagemEventosDTO } from "./eventos.dto/listaEvento.dto";
+import { FiltroEventosDto } from "./eventos.dto/filtroeventos.dto";
 
 @ApiTags('eventos')
 @Controller('/eventos')
@@ -88,4 +89,10 @@ export class EventoController{
 
         return retorno
     }
+
+    @Post('/filtrar')
+async filtrarEventos(@Body() filtro: FiltroEventosDto) {
+  return this.eventoService.filtrarEventos(filtro);
+}
+
 }
