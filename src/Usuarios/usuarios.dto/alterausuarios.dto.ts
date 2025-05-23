@@ -3,21 +3,21 @@ import { ApiProperty } from "@nestjs/swagger";
 import { SenhaForte } from "../../validacao/senha-forte.validator";
 import { EmailUnico } from "src/validacao/email.validator";
 
-export class alteraUsuarioDTO{
+export class alteraUsuarioDTO {
     @IsString()
-    @IsNotEmpty({message: "Nome não pode ser vazio"})
+    @IsNotEmpty({ message: "Nome não pode ser vazio" })
     @IsOptional()
     @ApiProperty({
         example: 'Djalma Mansueto',
         description: 'Esse campo vai ser utilizado como identificação do usuario'
     })
-    nome:string;
+    nome: string;
 
     @IsString()
     @IsOptional()
     @ApiProperty({
         example: "01/01/2000",
-        description:'Esse campo vai ser utilizado para definir data de nascimento'
+        description: 'Esse campo vai ser utilizado para definir data de nascimento'
     })
 
     datanasc: string;
@@ -25,9 +25,9 @@ export class alteraUsuarioDTO{
     @IsOptional()
     @ApiProperty({
         example: "Masculino,Feminino e Outros",
-        description:'Esse campo vai ser utilizado para definir o sexo do Usuario'
+        description: 'Esse campo vai ser utilizado para definir o sexo do Usuario'
     })
-    sexo:number;
+    sexo: number;
 
     @IsString()
     @IsOptional()
@@ -37,7 +37,7 @@ export class alteraUsuarioDTO{
     })
     telefone: string;
 
-    @IsEmail(undefined,{message:"email é invalido"})
+    @IsEmail(undefined, { message: "email é invalido" })
     @EmailUnico({ message: 'Já existe um usuário com este e-mail.' })
     @IsOptional()
     @ApiProperty({
@@ -47,14 +47,22 @@ export class alteraUsuarioDTO{
     email: string;
 
 
-    @MinLength(6,{message:"Senha precisa de pelo menos 6 digitos"})
-    @SenhaForte({message:"Senha muito fraca. Tente Novamente"})
+    @MinLength(6, { message: "Senha precisa de pelo menos 6 digitos" })
+    @SenhaForte({ message: "Senha muito fraca. Tente Novamente" })
     @IsOptional()
     @ApiProperty({
-        example:'Kjszkjk01@',
-        description:'a senha deve conter letras Maiuscolas, minuscolas, numeros e caracteres'
+        example: 'Kjszkjk01@',
+        description: 'a senha deve conter letras Maiuscolas, minuscolas, numeros e caracteres'
     })
     senha: string;
-    
+
+    @MinLength(6, { message: 'A senha repetida precisa de pelo menos 6 dígitos' })
+    @IsOptional()
+    @ApiProperty({
+        example: 'Kjszkjk01@',
+        description: 'Repetição da senha para verificação manual no service'
+    })
+    repeteSenha: string;
+
 
 }

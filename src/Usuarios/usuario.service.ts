@@ -20,8 +20,8 @@ export class USUARIOService {
   }
 
   async listar(): Promise<USUARIO[]> {
-  return await this.usuarioRepository.find();
-}
+    return await this.usuarioRepository.find();
+  }
 
   async inserir(dados: CriaUsuarioDTO): Promise<RetornoCadastroDTO> {
     let usuarios = new USUARIO();
@@ -32,7 +32,7 @@ export class USUARIOService {
     usuarios.telefone = dados.telefone;
     usuarios.email = dados.email;
     usuarios.trocaSenha(dados.senha);
-    
+
     return this.usuarioRepository.save(usuarios)
       .then((result) => {
         return <RetornoCadastroDTO>{
@@ -45,7 +45,7 @@ export class USUARIOService {
           id: "",
           message: "Houve um erro ao cadastrar." + error.message
         };
-    })
+      })
   }
 
   async localizarID(id: string): Promise<USUARIO> {
@@ -56,7 +56,7 @@ export class USUARIOService {
     });
 
     if (!objeto) {
-        throw new Error(`PESSOA com ID ${id} não encontrado`);
+      throw new Error(`PESSOA com ID ${id} não encontrado`);
     }
 
     return objeto;
@@ -70,20 +70,18 @@ export class USUARIOService {
     });
 
     if (!objeto) {
-        throw new Error(`PESSOA com EMAIL ${email} não encontrado`);
+      throw new Error(`PESSOA com EMAIL ${email} não encontrado`);
     }
 
     return objeto;
   }
 
   async Login(email: string, senha: string) {
-    //primeiro é pesquisado o usuário por meio do email
     const possivelUsuario = await this.localizarEmail(email)
 
     return {
-      //aqui é validada a senha, caso a senha esteja correta, é retornado os dados do usuário e também o status (true para correto, false para incorreto)
       usuarios: possivelUsuario ? (possivelUsuario.login(senha) ? possivelUsuario : null) : null,
-      status: possivelUsuario ? possivelUsuario.login(senha): false
+      status: possivelUsuario ? possivelUsuario.login(senha) : false
     };
   }
 
@@ -115,16 +113,20 @@ export class USUARIOService {
   async alterar(id: string, dados: alteraUsuarioDTO): Promise<RetornoCadastroDTO> {
     const usuario = await this.localizarID(id);
 
-    Object.entries(dados).forEach(
-      ([chave, valor]) => {
-        if (chave === 'ID') {
-          return;
-        }
-        else{
-          usuario[chave] = valor;
-        }
+    Object.entries(dados).forEach(([chave, valor]) => {
+      if (['ID', 'senha', 'repeteSenha'].includes(chave)) {
+        return;
+      } else {
+        usuario[chave] = valor;
       }
-    )
+    });
+
+    if (dados.senha) {
+      if (dados.senha !== dados.repeteSenha) {
+        throw new Error('As senhas não coincidem.');
+      }
+      usuario.trocaSenha(dados.senha);
+    }
 
     return this.usuarioRepository.save(usuario)
       .then((result) => {
@@ -139,10 +141,30 @@ export class USUARIOService {
           message: "Houve um erro ao alterar." + error.message
         };
       });
-    }
 
-    async buscarPorEmail(email: string): Promise<USUARIO | null> {
-  return await this.usuarioRepository.findOne({ where: { email: email } });
-}
+  }
+
+  async buscarPorEmail(email: string): Promise<USUARIO | null> {
+    return await this.usuarioRepository.findOne({ where: { email: email } });
+
+
+  }
+
+  async alterarSenha(email: string, novaSenha: string): Promise<boolean> {
+    try {
+      const usuario = await this.usuarioRepository.findOne({ where: { email } });
+
+      if (!usuario) {
+        return false;
+      }
+
+      usuario.trocaSenha(novaSenha);
+      await this.usuarioRepository.save(usuario);
+      return true;
+    } catch (error) {
+      console.error('Erro ao alterar senha:', error);
+      return false;
+    }
+  }
 
 }

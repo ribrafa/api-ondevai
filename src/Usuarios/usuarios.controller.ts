@@ -7,6 +7,7 @@ import { alteraUsuarioDTO } from "./usuarios.dto/alterausuarios.dto";
 import { ApiCreatedResponse, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { USUARIOService } from "./usuario.service";
 import { RetornoCadastroDTO } from "src/dto/retorno.dto";
+import { AlteraSenhaDTO } from "./usuarios.dto/alteraSenha.dto";
 
 @ApiTags('usuarios')
 @Controller('/usuarios')
@@ -31,7 +32,7 @@ export class UsuarioController{
         return retorno;       
     }
 
-    @Put('/:id')
+    @Put('/alterar/:id')
     @ApiResponse({status: 200, description:'Retorna que houve sucesso na alteração'})
     @ApiResponse({status: 500, description:'Retorna que houve erro na alteração.'})
     @ApiResponse({status: 400, description:'Retorna que há algum dado inválido na requisição.'})
@@ -86,4 +87,13 @@ export class UsuarioController{
 
         return retorno
     }
+
+    @Post('/alterarsenha')
+async alterarSenha(@Body() dados: AlteraSenhaDTO) {
+  const resultado = await this.usuarioService.alterarSenha(dados.email, dados.senha);
+  return {
+    sucesso: resultado,
+    mensagem: resultado ? 'Senha alterada com sucesso.' : 'Usuário não encontrado.'
+  };
+}
 }
